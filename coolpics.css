@@ -1,0 +1,310 @@
+/* Google Fonts Import - REQUIRES INTERNET CONNECTION */
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+/* CSS Variables for consistent styling */
+:root {
+  --primary-color: #52489c;
+  --secondary-color: #59c3c3;
+  --accent-color: #f45b69;
+  --text-dark: #333;
+  --text-light: #ebebeb;
+  --primary-font: Arial, Helvetica, sans-serif;
+  --secondary-font: Mooli, sans-serif;
+}
+
+/* Reset default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base body styles */
+body {
+  font-family: var(--primary-font);
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+/* Link styles */
+a:link,
+a:visited {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* Make images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Header styles */
+header {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 1rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between; /* added */
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Title section with logo and menu button */
+.title-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Site title */
+h1 {
+  font-family: var(--secondary-font);
+  font-size: 1.8rem;
+}
+
+/* Menu toggle button for mobile */
+.menu-toggle {
+  background: none;
+  border: 2px solid var(--text-light);
+  color: var(--text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--primary-font);
+  font-size: 1rem;
+}
+
+.menu-toggle:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-dark);
+}
+
+/* Navigation menu - hidden by default on mobile */
+.main-nav {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* Hide class for JavaScript control */
+.main-nav.hide {
+  display: none;
+}
+
+.main-nav ul {
+  list-style: none;
+}
+
+.main-nav li {
+  margin-bottom: 0.5rem;
+}
+
+.main-nav a {
+  color: var(--text-light);
+  display: block;
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.main-nav a:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-dark);
+  text-decoration: none;
+}
+
+/* Main content area */
+main {
+  padding: 2rem 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Section headings */
+h2 {
+  font-family: var(--secondary-font);
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  display: block;
+}
+
+/* Gallery grid layout */
+.gallery {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.gallery figure {
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Gallery images - square crop with cover */
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.02);
+}
+
+/* Footer styles */
+footer {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+/* ===== IMAGE VIEWER MODAL STYLES ===== */
+/* These styles work with the JS-generated modal */
+
+.viewer {
+  display: none; /* added */
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 10;
+  
+  /* Center content with grid */
+  display: grid;
+  grid-template-rows: auto 1fr;
+  justify-items: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Show modal when active class is added */
+.viewer.active { /* added */
+  display: grid;
+}
+
+/* Close button in modal */
+.close-viewer {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  grid-row: 1;
+  justify-self: end;
+  margin-right: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.close-viewer:hover {
+  background: var(--primary-color);
+}
+
+/* Image inside modal */
+.viewer-image {
+  grid-row: 2;
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ===== RESPONSIVE DESIGN BREAKPOINTS ===== */
+
+/* Tablet screens - 2 column gallery */
+@media screen and (min-width: 700px) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Desktop screens - 3 column gallery and horizontal nav */
+@media screen and (min-width: 1000px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery h2 {
+    grid-column: 1 / -1;
+  }
+  
+  /* Hide menu button on desktop */
+  .menu-toggle {
+    display: none;
+  }
+  
+  /* Always show navigation on desktop */
+  .main-nav {
+    display: block;
+    width: auto;
+    margin-top: 0;
+  }
+  
+  /* Override hide class on desktop */
+  .main-nav.hide {
+    display: block;
+  }
+  
+  .main-nav ul {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .main-nav li {
+    margin-bottom: 0;
+  }
+  
+  .main-nav a {
+    border-bottom: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .main-nav a:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  /* Adjust header layout for desktop - title above navigation */
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .title-section {
+    justify-content: center;
+  }
+}
+
+
+
+
